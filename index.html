@@ -1,0 +1,516 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>JavaScript with Ajinkya Borade</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<section>
+						<p>Hello 'JS' World!</p>
+					</section>
+
+					<section>
+						<h2>What is JavaScript?</h2>
+					</section>
+					<section>
+						<p>JavaScript, not to be confused with Java (same goes with Hamburger), was created in 10 days in May 1995 by Brendan Eich, then working at Netscape and now of Mozilla. JavaScript was not always known as JavaScript: the original name was Mocha, a name chosen by Marc Andreessen, founder of Netscape.</p>
+					</section>
+					<section>
+						<h2>What are you going to learn today</h2>
+						<p>
+							<ul>
+								<li>Functions</li>
+								<li>Closure</li>
+								<li>Objects</li>
+								<li>Inheritance</li>
+								<li>Promise</li>
+								<li>Events</li>
+								<li>jQuery</li>
+								<li>More functions</li>
+								<li>some ES6</li>
+							</ul>
+						</p>
+					</section>
+
+					<section>
+						Some tips where to go next, at end of the session.
+					</section>
+
+
+					<section>
+						<p>Eventually we will also get our hands on real code;</p>
+						
+						<section data-markdown>
+							<script type="text/template">
+								```
+								mixin link(spec)
+								  - spec = spec || {}
+								  - spec.__class = spec.__class || ''
+								  - spec.text = spec.text || 'Default Link'
+
+								  a.link(class=spec.__class)&attributes(attributes)
+								    if block
+								      block
+								    else
+								      != spec.text
+
+								```
+
+								```
+								'use strict';
+
+								import $ from 'jquery';
+								import Link from '../_modules/link/link';
+								import Slider from '../_modules/slider/slider';
+
+								$(() => {
+								  new Link(); // Activate Link modules logic
+								  new Slider();
+								  console.log('main.js loaded');
+								});
+								```
+							</script>
+						</section>
+
+					</section>
+				</section>
+				<!-- slide end -->
+
+				
+				<section>
+					<section>
+						<h3>Functions with ES6</h3>
+					</section>
+
+					<section>
+						<p>"Those who are unaware they are walking in darkness will never seek the light"</p>
+					</section>
+
+				</section>
+				<!-- slide end -->
+
+
+
+				<section>
+					<section>
+						<h3>Objects</h3>
+					</section>
+
+					<section>
+						<p><img src="images/objects.png"></p>
+					</section>
+
+					<section>
+						<h3>So what is an Object</h3>
+						<p>"Its a set of key value pairs. Each key can be assigned any value type"</p>
+						<p><img src="images/objects_01.png"></p>
+					</section>
+
+					<section>
+						<p>Important note's:
+							<ul>
+								<li>Primitives are passed by value, objects are passed by reference</li>
+								<li>`function`'s are regular objects</li>
+								<li>`this` keyword depends on the object, not where the function was defined</li>
+							</ul>
+						</p>
+					</section>
+
+					<section>
+						<p>
+							<section data-markdown>
+								<script type="text/template">
+									```
+									var myobj1 = {
+										get: function() {
+											return this.val;
+										},
+										val: 42
+									};
+									var myobj2 = {
+										get: myobj1.get,
+										val: 22
+									};
+									function mymethod() {
+										return this.val;
+									}
+									```
+								</script>
+							</section>
+							<small>Tip: use strict mode to prevent mistakes</small>
+						</p>
+					</section>
+
+				</section>
+				<!-- slide end -->
+
+				<section>
+					<section>
+						<h3>Inheritance</h3>
+					</section>
+
+					<section>
+						<section data-markdown>
+							<script type="text/template">
+								```
+								var Parent = {
+									get: function() {
+										return this.val;
+									},
+									val: 42
+								};
+								var child = Object.create(Parent);
+								//child.val = 99;
+								var grandchild = Object.create(child);
+
+								```
+							</script>
+						</section>
+					</section>
+
+					<section>
+						<h3>Prototypical method</h3>
+					</section>
+
+					<section>
+						<h3>Polymorphism and Method Overriding</h3>
+					</section>
+
+					<section>
+						<p>means, same name but deffirent behaviour. Polymorphism cant be there without `Inheritance`</p>
+					</section>
+
+					<section>
+						<p>Polymorphism</p>
+						<section data-markdown>
+							<script type="text/template">
+								```
+								var Parent = {
+									get: function() {
+										return this.val;
+									},
+									val: 42
+								};
+								var child = Object.create(Parent);
+								
+								child.get = function() {
+									return Parent.get.call(this) + ' CHANGED!';
+								};
+
+								```
+							</script>
+						</section>
+					</section>
+
+					<section>
+						<h3>Classical method</h3>
+
+						<ul>
+							<li>new constructor</li>
+							<li>instanceof</li>
+						</ul>
+					</section>
+				
+				</section>
+				<!-- slide end -->
+
+				<section>
+					<section>
+						Promise
+					</section>
+				</section>
+				<!-- slide end -->
+
+
+				<section>
+					<section>
+						Events and jQuery
+					</section>
+
+					<section>
+						jQuery slider
+					</section>
+
+					<section>
+						jQuery Todo with localstorage
+					</section>
+				</section>
+				<!-- slide end -->
+
+
+				<!-- slide start functional programming -->
+				<section>
+					<section>
+						<h3>Some Helper Functions</h3>
+					</section>
+
+					<section>
+						<p>non-functional (bad)</p>
+						
+						<section data-markdown>
+							<script type="text/template">
+								```
+								var name = Ajinkya;
+								var greeting = "Hi, I'm ";
+								console.log(greeting + name);
+
+								```
+							</script>
+						</section>
+					</section>
+
+
+					<section>
+						<p>Avoid mutation (bad)</p>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							```
+							function Foo(){}
+							function bar(){}
+
+							var foo = new Foo();
+
+							// This is bad: 
+							//foo.__proto__.bar = bar;
+
+							// But this is okay
+							Foo.prototype.bar = bar;
+							```
+						</script>
+					</section>
+
+
+					<section>
+						<p><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign" target="_blank">Object.assign</a></p>
+					</section>
+
+					<section>
+						<p>No mutation (good)</p>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							```
+							var nums = [1,2,3,'4'];
+							var numbers = nums.map((num) => {
+								return (typeof num === 'string' ? 'string' : num);
+							});
+							```
+						</script>
+					</section>
+
+					<section data-markdown>
+						<script type="text/template">
+							```
+							function isAuthenticated(state, action) {
+							  var source = state || {};
+
+							  switch (action) {
+							    case 'SIGNIN_SUCCESS':
+							      return Object.assign({}, source, {authenticated: true});
+							      
+							    case 'SIGNIN_ERROR':
+							      return Object.assign({}, source, {authenticated: false});
+							  }
+
+							  return source;
+							}
+							```
+						</script>
+					</section>
+
+
+					<section>
+						<p>Array - slice, split, reduce - angular alike filter</p>
+						<p>001_array-slice.js</p>
+					</section>
+
+					<section>
+						<p>Impure function</p>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							```
+							var name = 'Ajinkya';
+
+							function getName(){
+								return 'Hi, I\'m ' + name;
+							}
+
+							var x = 'Mr. X';
+							function mrx(){
+								return x;
+							}
+							```
+						</script>
+					</section>
+
+					<section>
+						<p>Avoid side effects, use pure functions</p>
+					</section>
+
+					<section>
+						<p>Pure function</p>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							```
+							function getName(name){
+								return 'Hi, I\'m ' + name;
+							}
+
+							function y(x){
+
+								return function(){
+									return x;//x is a free variable
+								};
+							}
+							```
+						</script>
+					</section>
+
+					<section>
+						<p>Functions containing one or more free variables are called 'closures'</p>
+					</section>
+
+
+
+					<section>
+						<p><i>Closure</i></p>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							```
+							function makeFunc() {
+							  var name = 'Ajinkya';
+							  function getName() {
+							    alert('Hi, I\'m ' + name);
+							  }
+							  return getName;
+							}
+
+							var myFunc = makeFunc();
+							```
+						</script>
+					</section>
+					<section>
+						Closures are functions that refer to free variables. In other words, these functions 'remember' the environment in which they were created.
+					</section>
+
+
+
+					<section>
+						<p>Higher-order functions</p>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							```
+							function printHuman(gender){
+
+								return function(name){
+									return name + ', ' + gender;
+								};
+							}
+							```
+						</script>
+					</section>
+					<section>
+						aka Currying, is your function can pass through the application and gradually receive the arguments.
+					</section>
+
+
+
+					<section>
+						<h3>Recursion</h3>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							```
+							function countDown(num){
+								if(num === 0) return;
+
+								console.log( num );
+								countDown(num - 1);
+							}
+							```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							```
+							//assignment people !!
+							var animals = [
+								{id: 'animals', category: 'null'},
+								{id: 'mammals', category: 'animals'},
+								{id: 'dogs', category: 'mammals'},
+								{id: 'cats', category: 'mammals'},
+								{id: 'bulldog', category: 'dogs'},
+								{id: 'pitbull', category: 'dogs'},
+								{id: 'kitty', category: 'cats'}
+							];
+
+							{
+								animals : {
+									mammals : {
+										dogs : {
+											bulldog: {},
+											pitbull: {}
+										},
+										cats : {
+											kitty: {}
+										}
+									}
+								}
+							}
+							```
+						</script>
+					</section>
+					<section>
+						002_recursion.js
+					</section>
+				</section>
+				<!-- slide end functional programming -->
+
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
