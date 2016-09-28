@@ -3,7 +3,9 @@ var person  = {
 };
 
 var filters = {
-    'noslug': x => x.replace('-', ' '),
+    'noslug': function (x) {
+        return x.replace('-', ' ');
+    },
     'uppercase': x => x.toUpperCase()
 };
 
